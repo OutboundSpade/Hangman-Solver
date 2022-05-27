@@ -1,3 +1,4 @@
+import os
 import console
 from os.path import exists
 
