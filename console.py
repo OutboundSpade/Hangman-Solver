@@ -1,4 +1,5 @@
 import os
+import hangman
 
 
 def displayBoard(word, incorrectLetters, numofwords):
@@ -7,6 +8,7 @@ def displayBoard(word, incorrectLetters, numofwords):
     else:
         _ = os.system('cls')
     showIncorrect(incorrectLetters)
+    hangman.printHangman(len(incorrectLetters))
     showWord(word)
     print()
     print(f"Possible words: {numofwords}")
