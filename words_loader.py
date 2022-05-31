@@ -1,7 +1,6 @@
 import os
 import subprocess
 import console
-import sys
 
 CACHE_VERSIONS = ["1.0.0"]
 
@@ -50,8 +49,9 @@ def createCacheFile(generator_file: str, cache_file: str, include_apos: bool, wo
                 out = float(out)
             except ValueError:
                 continue
-            # print("\b"*200, end="")
-            sys.stdout.write("\033[F")  # Cursor up one line
+            CURSOR_UP_ONE = '\x1b[1A'
+            ERASE_LINE = '\x1b[2K'
+            print(CURSOR_UP_ONE + ERASE_LINE, end="")
             print(console.progressBar(int(out), 100))
     process.wait()
     if process.returncode != 0 or not os.access(cache_file, os.R_OK):
