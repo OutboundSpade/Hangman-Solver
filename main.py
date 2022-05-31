@@ -1,7 +1,5 @@
-import os
 import console
-from os.path import exists
-
+import words_loader
 print("Reading words...")
 currentWord = ""
 incorrectGuesses = []
@@ -15,37 +13,40 @@ while True:
         break
     elif ia == "n":
         break
-cacheFile = "./.words-cache"
-if appostrophes:
-    cacheFile = "./.words-cache-apos"
-
-if exists(cacheFile):
-    print("Loading words from cache...")
-    with open(cacheFile, 'r') as f:
-        for line in f:
-            words.append(line.strip().lower())
-else:
-    print("No cache found, generating... (this may take a while)")
-    with open('./words.txt') as file:
-        for line in file:
-            w = line.strip().lower()
-            if (not appostrophes and "'" in w) or (w in words):
-                continue
-            words.append(w)
-    print("Saving words to cache...")
-    with open(cacheFile, 'w') as f:
-        for word in words:
-            f.write(word + "\n")
-print("Done reading words.")
+wc = ".words-cache-apos" if appostrophes else ".words-cache"
 wordlen = int(input("How long is your word? "))
-for i in range(wordlen):
-    currentWord += " "
-print("Finding words of length", wordlen)
-c = 0
-for i in range(len(words)):
-    if len(words[i-c]) != wordlen:
-        words.pop(i-c)
-        c += 1
+words = words_loader.loadWords(wc, "./words.txt", wordlen, appostrophes)
+
+# cacheFile = "./.words-cache"
+# if appostrophes:
+#     cacheFile = "./.words-cache-apos"
+
+# if exists(cacheFile):
+#     print("Loading words from cache...")
+#     with open(cacheFile, 'r') as f:
+#         for line in f:
+#             words.append(line.strip().lower())
+# else:
+#     print("No cache found, generating... (this may take a while)")
+#     with open('./words.txt') as file:
+#         for line in file:
+#             w = line.strip().lower()
+#             if (not appostrophes and "'" in w) or (w in words):
+#                 continue
+#             words.append(w)
+#     print("Saving words to cache...")
+#     with open(cacheFile, 'w') as f:
+#         for word in words:
+#             f.write(word + "\n")
+# print("Done reading words.")
+# for i in range(wordlen):
+#     currentWord += " "
+# print("Finding words of length", wordlen)
+# c = 0
+# for i in range(len(words)):
+#     if len(words[i-c]) != wordlen:
+#         words.pop(i-c)
+#         c += 1
 
 
 def filterWords(cword):
