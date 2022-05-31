@@ -1,5 +1,4 @@
-all: build move
+LD_FLAGS="-s -w"
+all: build
 build:
-	go build generator.go
-move:
-	mv generator cache_generator
+	go build -ldflags=${LD_FLAGS} -o cache_generator generator.go

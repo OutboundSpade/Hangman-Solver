@@ -15,6 +15,8 @@ while True:
         break
 wc = ".words-cache-apos" if appostrophes else ".words-cache"
 wordlen = int(input("How long is your word? "))
+for i in range(wordlen):
+    currentWord += " "
 words = words_loader.loadWords(wc, "./words.txt", wordlen, appostrophes)
 
 # cacheFile = "./.words-cache"
@@ -39,8 +41,7 @@ words = words_loader.loadWords(wc, "./words.txt", wordlen, appostrophes)
 #         for word in words:
 #             f.write(word + "\n")
 # print("Done reading words.")
-# for i in range(wordlen):
-#     currentWord += " "
+#
 # print("Finding words of length", wordlen)
 # c = 0
 # for i in range(len(words)):

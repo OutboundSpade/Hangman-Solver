@@ -40,7 +40,7 @@ func main() {
 	wordMap := make(map[int][]string)
 	line := strings.Split(strings.Trim(string(b), " "), "\n")
 	linelen := len(line)
-	percentInterval := 5000
+	percentInterval := 2000
 	wordCount := 0
 	fmt.Printf("ignoring apostrophe: %t\n", *ignoreApostrophe)
 	for i, aitem := range line {
