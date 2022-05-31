@@ -41,7 +41,7 @@ def createCacheFile(generator_file: str, cache_file: str, include_apos: bool, wo
         pArgs.append("-ignore-apos")
     process = subprocess.Popen(
         pArgs, stderr=subprocess.PIPE, stdout=subprocess.PIPE, text=True)
-    print(console.progressBar(0, 100))
+    print(console.progressBar(0, 100), end="\r")
     while process.poll() is None:
         out = process.stdout.readline().strip()
         if out != '':
@@ -51,8 +51,7 @@ def createCacheFile(generator_file: str, cache_file: str, include_apos: bool, wo
                 continue
             CURSOR_UP_ONE = '\x1b[1A'
             ERASE_LINE = '\x1b[2K'
-            print(CURSOR_UP_ONE + ERASE_LINE, end="")
-            print(console.progressBar(int(out), 100))
+            print(console.progressBar(int(out), 100), end="\r")
     process.wait()
     if process.returncode != 0 or not os.access(cache_file, os.R_OK):
         print(
