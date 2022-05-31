@@ -63,6 +63,9 @@ def filterWords(cword):
                     break
                 else:
                     continue
+            # print(f"J: {j}")
+            # print(f"Cword ({len(cword)}): {cword}")
+            # print(f"Word ({len(words[i-c])}): {words[i-c]}")
             if cword[j] != words[i-c][j]:
                 words.pop(i-c)
                 c += 1

@@ -7,6 +7,7 @@ import (
 	"os"
 	"strings"
 	"time"
+	"unicode/utf8"
 )
 
 const (
@@ -47,8 +48,8 @@ func main() {
 		item := strings.Trim(aitem, " ")
 		item = strings.Trim(aitem, "\r")
 		item = strings.ToLower(aitem)
-		if !(*ignoreApostrophe && strings.Contains(item, "'")) && !arrContains(wordMap[len(item)], item) {
-			wordMap[len(item)] = append(wordMap[len(item)], item)
+		if !(*ignoreApostrophe && strings.Contains(item, "'")) && !arrContains(wordMap[utf8.RuneCountInString(item)], item) {
+			wordMap[utf8.RuneCountInString(item)] = append(wordMap[utf8.RuneCountInString(item)], item)
 			wordCount++
 		}
 		if i%percentInterval == 0 {
