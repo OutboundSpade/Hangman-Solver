@@ -3,10 +3,10 @@ import hangman
 
 
 def displayBoard(word, incorrectLetters, numofwords):
-    # if os.name == 'posix':
-    #     _ = os.system('clear')
-    # else:
-    #     _ = os.system('cls')
+    if os.name == 'posix':
+        _ = os.system('clear')
+    else:
+        _ = os.system('cls')
     showIncorrect(incorrectLetters)
     hangman.printHangman(len(incorrectLetters))
     showWord(word)
